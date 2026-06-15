@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Guess My Number 💖</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffb6c1,#ffc0cb,#ffd1dc);
+    font-family:Arial,sans-serif;
+    overflow:hidden;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 20px rgba(0,0,0,0.15);
+    width:350px;
+}
+
+h1{
+    color:#ff4f8b;
+}
+
+input{
+    width:80%;
+    padding:10px;
+    border-radius:10px;
+    border:2px solid pink;
+    font-size:16px;
+}
+
+button{
+    margin-top:10px;
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:#ff4f8b;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+#result{
+    margin-top:15px;
+    font-weight:bold;
+    color:#d63384;
+}
+
+.heart{
+    position:absolute;
+    font-size:25px;
+    animation:float 8s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>💖 Guess My Number 💖</h1>
+    <p>Guess a number between 0 and 10,000</p>
+
+    <input type="number" id="guess">
+
+    <br>
+
+    <button onclick="checkGuess()">Guess</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+
+let secret = Math.floor(Math.random()*10001);
+
+function checkGuess(){
+
+    let guess = Number(document.getElementById("guess").value);
+    let result = document.getElementById("result");
+
+    if(guess < secret){
+        result.innerHTML = "💕 My number is greater!";
+    }
+    else if(guess > secret){
+        result.innerHTML = "💔 My number is smaller!";
+    }
+    else{
+        result.innerHTML = "🎉 Boom! You got my number! 🎉";
+    }
+}
+
+for(let i=0;i<25;i++){
+
+    let heart = document.createElement("div");
+
+    heart.className="heart";
+    heart.innerHTML="💖";
+
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDelay=Math.random()*8+"s";
+
+    document.body.appendChild(heart);
+}
+
+</script>
+
+</body>
+</html>
